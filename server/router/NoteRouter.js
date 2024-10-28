@@ -236,8 +236,12 @@ router.use('/edit', authMiddleware, NoteController.editNote)
  *               user_id:
  *                 type: string
  *                 description: The ID of the user whose notes are to be fetched.
+ *               sort:
+ *                 type: string
+ *                 description: Sort type (e.g., 'asc' for ascending, 'desc' for descending).
  *             required:
  *               - user_id
+ *               - sort
  *     responses:
  *       200:
  *         description: Notes fetched successfully
@@ -265,10 +269,10 @@ router.use('/edit', authMiddleware, NoteController.editNote)
  *                       properties:
  *                         name:
  *                           type: string
- *                           description: The ID of the tag.
- *                         number:
- *                           type: string
  *                           description: The name of the tag.
+ *                         number:
+ *                           type: number
+ *                           description: The number associated with the tag.
  *       401:
  *         description: Unauthorized
  */
