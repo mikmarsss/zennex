@@ -8,8 +8,8 @@ export class NoteService {
         return $api.post<INote>('/note/create', { user_id, name, description, tags })
     }
 
-    static async fetchUserNotes(user_id: number): Promise<AxiosResponse<INote[]>> {
-        return $api.post<INote[]>('/note/all', { user_id })
+    static async fetchUserNotes(user_id: number, sort: string): Promise<AxiosResponse<INote[]>> {
+        return $api.post<INote[]>('/note/all', { user_id, sort })
     }
 
     static async fetchUserNote(user_id: number, note_id: string): Promise<AxiosResponse<INote>> {

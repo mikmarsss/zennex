@@ -6,6 +6,7 @@ import NoteBlock from "../widgets/NoteBlock";
 import { useNavigate } from "react-router-dom";
 import { CREATE_ROUTE, NOTE_ROUTE } from "../app/routes/utils";
 import Input from "../shared/ui/Input";
+import Button from "../shared/ui/Button";
 
 
 
@@ -16,6 +17,11 @@ const NotesPage: React.FC = () => {
     const [filteredNotes, setFilteredNotes] = useState<INote[]>([])
     const navigate = useNavigate()
     const [isSerch, setIsSerch] = useState(false)
+    const [sort, setSort] = useState('DESC')
+
+    useEffect(() => {
+        fetchUserNotes()
+    }, [sort])
 
     useEffect(() => {
         fetchUserNotes()
@@ -23,7 +29,7 @@ const NotesPage: React.FC = () => {
 
     const fetchUserNotes = async () => {
         try {
-            const response = await NoteService.fetchUserNotes(userStore.user.id)
+            const response = await NoteService.fetchUserNotes(userStore.user.id, sort)
             const userNotes = response.data
             if (Array.isArray(userNotes)) {
                 setUserNotes(userNotes)
@@ -60,6 +66,10 @@ const NotesPage: React.FC = () => {
         }
     }
 
+    const sortHandler = (type: string) => {
+        setSort(type)
+    }
+
     return (
         <>
             <button
@@ -74,6 +84,15 @@ const NotesPage: React.FC = () => {
                 onChange={(e) => noteFindHandler(e)}
                 width="50%"
             />
+            <div style={{ display: 'flex', gap: '10px' }}>
+                <Button onClick={() => sortHandler('DESC')} background={sort === 'DESC' ? "#56C999" : "#CC5C5C"}>
+                    Сначала новые
+                </Button>
+                <Button onClick={() => sortHandler('ASC')} background={sort === 'ASC' ? "#56C999" : "#CC5C5C"}>
+                    Сначала старые
+                </Button>
+            </div>
+
             {
                 (isSerch ? filteredNotes : userNotes).map((item) => (
                     <NoteBlock key={item.id} note={item} />

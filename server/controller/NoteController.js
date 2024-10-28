@@ -34,8 +34,8 @@ class NoteController {
 
     async fetchUserNotes(req, res, next) {
         try {
-            const { user_id } = req.body
-            const noteData = await NoteService.fetchUserNotes(user_id)
+            const { user_id, sort } = req.body
+            const noteData = await NoteService.fetchUserNotes(user_id, sort)
             return res.json(noteData)
         } catch (e) {
             next(e)

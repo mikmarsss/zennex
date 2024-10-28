@@ -20,9 +20,9 @@ export default class NoteStore {
         makeAutoObservable(this)
     }
 
-    async fetchUserNotes(user_id: number) {
+    async fetchUserNotes(user_id: number, sort: string) {
         try {
-            const response = await NoteService.fetchUserNotes(user_id)
+            const response = await NoteService.fetchUserNotes(user_id, sort)
             this.setNotes(response.data)
         } catch (e: any) {
             console.log(e.response?.data?.message)
