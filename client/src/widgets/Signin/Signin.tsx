@@ -7,6 +7,7 @@ import Input from "../../shared/ui/Input";
 
 const StyledSignin = styled.div`
     width: 80%;
+    min-width: 300px;
     height:auto;
     border:solid #33A6CC 2px;
     border-radius: 15px;
@@ -75,7 +76,7 @@ const Signin: React.FC = () => {
         <>
             <StyledSignin>
                 <p style={{ fontSize: "28px" }}>Зарегистрируйтесь</p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', margin: '30px 0 0 0', width: "80%" }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', margin: '30px 0 0 0', width: "80%", minWidth: '250px' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
                         <p>Имя пользователя</p>
                         <Input

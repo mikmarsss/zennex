@@ -7,6 +7,7 @@ import Input from "../../shared/ui/Input";
 
 const StyledLogin = styled.div`
    width: 80%;
+   min-width: 300px;
     height:auto;
     border:solid #33A6CC 2px;
     border-radius: 15px;
@@ -16,8 +17,6 @@ const StyledLogin = styled.div`
     padding:20px;
     box-sizing: border-box;
 `
-
-
 
 const Login: React.FC = () => {
 

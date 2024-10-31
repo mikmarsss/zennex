@@ -27,7 +27,10 @@ class NoteService {
     async fetchUserNotes(user_id, sort) {
         const notes = await Note.findAll({
             where: { user_id: user_id },
-            order: [['createdAt', sort]]
+            order: [
+                ['updatedAt', sort],
+                ['createdAt', sort]
+            ]
         });
         return notes;
     }

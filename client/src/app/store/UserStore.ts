@@ -1,9 +1,9 @@
 import axios from "axios";
 import { IUser } from "../../entities/model/IUser";
 import { AuthService } from "../service/AuthService";
-import { toast } from "react-toastify";
 import { AuthResponse } from "../../entities/response/AuthResponse";
 import { makeAutoObservable } from "mobx";
+import { showToast } from "../../shared/ui/Toast/Toast";
 
 export default class UserStore {
     user = {} as IUser
@@ -27,28 +27,10 @@ export default class UserStore {
             localStorage.setItem('token', response.data.accessToken)
             this.setAuth(true)
             this.setUser(response.data.user)
-            toast.success('Есть контакт!', {
-                position: "top-center",
-                autoClose: 500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            showToast('success', 'Есть контакт', 1000)
         } catch (e: any) {
             console.log(e.response?.data?.message)
-            toast.warning(e.response?.data?.message, {
-                position: "top-center",
-                autoClose: 500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            showToast('warning', e.response?.data?.message, 1000)
         }
     }
 
@@ -58,28 +40,10 @@ export default class UserStore {
             localStorage.setItem('token', response.data.accessToken)
             this.setAuth(true)
             this.setUser(response.data.user)
-            toast.success('Есть контакт!', {
-                position: "top-center",
-                autoClose: 500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            showToast('success', 'Есть контакт', 1000)
         } catch (e: any) {
             console.log(e.response?.data?.message)
-            toast.warning(e.response?.data?.message, {
-                position: "top-center",
-                autoClose: 500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            showToast('warning', e.response?.data?.message, 1000)
         }
     }
 

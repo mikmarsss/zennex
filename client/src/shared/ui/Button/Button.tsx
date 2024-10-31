@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-
 const StyledButton = styled.button<ButtonProps>`
     cursor: pointer;
     background: ${({ background, disabled }) => (disabled ? '#DAE0E4' : background)};
@@ -12,6 +11,7 @@ const StyledButton = styled.button<ButtonProps>`
     font-size: 20px; 
     border-radius: 7px;
     height: 40px;
+    white-space: nowrap;
 `
 
 interface ButtonProps {

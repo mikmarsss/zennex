@@ -52,7 +52,6 @@ const CreateNotePage: React.FC = () => {
         }
     }
 
-
     const createNote = async () => {
         noteStore.createNote(userStore.user.id, name, description, tags)
         navigate('/')

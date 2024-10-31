@@ -7,6 +7,7 @@ import Button from "../../shared/ui/Button";
 
 const StyledSideBar = styled.div`
     width:20%;
+    min-width: 350px;
     min-height: 100vh;
     height: auto;
     background-color: white;
@@ -22,14 +23,13 @@ const SideBar: React.FC = () => {
 
     const [auth, setAuth] = useState('login')
 
-
     return (
         <>
             <StyledSideBar>
                 {
                     !userStore.isAuth &&
                     <>
-                        <div style={{ display: 'flex', gap: '20px', margin: '0 0 30px 0' }}>
+                        <div style={{ display: 'flex', gap: '20px', margin: '0 0 30px 0', flexWrap: 'wrap', justifyContent: 'center' }}>
                             <Button background="#56C999" onClick={() => setAuth('login')}>
                                 Войти
                             </Button>
@@ -45,7 +45,6 @@ const SideBar: React.FC = () => {
                             auth === 'login' &&
                             <Login />
                         }
-
                     </>
                 }
                 {

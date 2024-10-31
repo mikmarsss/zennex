@@ -11,7 +11,6 @@ import { authRoutes } from './routes/routes'
 import { Route, Routes } from 'react-router-dom'
 
 const StyledApp = styled.div`
-
   width: 100%;
   min-height: 100vh;
   height: auto;
@@ -45,8 +44,6 @@ function App() {
     checkAuth();
   }, [userStore]);
 
-
-
   return (
     <>
 
@@ -57,7 +54,7 @@ function App() {
           <StyledMain>
             {
               !userStore.isAuth &&
-              <p style={{ margin: '100px 0 0 0', fontSize: '32px' }}>Войдите или зарегистрируйтесь, чтобы продолжить</p>
+              <p style={{ margin: '100px 0 0 0', fontSize: '32px', textAlign: 'center' }}>Войдите или зарегистрируйтесь, чтобы продолжить</p>
             }
             {
               <Routes>

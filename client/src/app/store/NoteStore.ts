@@ -2,7 +2,7 @@
 import { INote, Tag } from "../../entities/model/INote";
 import { makeAutoObservable } from "mobx";
 import { NoteService } from "../service/NoteService";
-import { toast } from "react-toastify";
+import { showToast } from "../../shared/ui/Toast/Toast";
 
 export default class NoteStore {
     note = {} as INote
@@ -20,9 +20,9 @@ export default class NoteStore {
         makeAutoObservable(this)
     }
 
-    async fetchUserNotes(user_id: number, sort: string) {
+    async fetchAllUserNotes(user_id: number, sort: string) {
         try {
-            const response = await NoteService.fetchUserNotes(user_id, sort)
+            const response = await NoteService.fetchAllUserNotes(user_id, sort)
             this.setNotes(response.data)
         } catch (e: any) {
             console.log(e.response?.data?.message)
@@ -33,28 +33,10 @@ export default class NoteStore {
         try {
             const response = await NoteService.createNote(user_id, name, description, tags)
             console.log(response)
-            toast.success('Заметка создана', {
-                position: "top-center",
-                autoClose: 500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            showToast('success', 'Заметка создана', 1000)
         } catch (e: any) {
             console.log(e.response?.data?.message)
-            toast.warning(e.response?.data?.message, {
-                position: "top-center",
-                autoClose: 500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            showToast('warning', e.response?.data?.message, 1000)
         }
     }
 
@@ -62,28 +44,10 @@ export default class NoteStore {
         try {
             const response = await NoteService.deleteNote(note_id, user_id)
             console.log(response)
-            toast.success('Заметка удалена', {
-                position: "top-center",
-                autoClose: 500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            showToast('success', 'Заметка удалена', 1000)
         } catch (e: any) {
             console.log(e.response?.data?.message)
-            toast.warning(e.response?.data?.message, {
-                position: "top-center",
-                autoClose: 500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            showToast('warning', e.response?.data?.message, 1000)
         }
     }
 
@@ -91,28 +55,10 @@ export default class NoteStore {
         try {
             const response = await NoteService.editNote(note_id, user_id, name, description, tags)
             console.log(response)
-            toast.success('Изменения сохранены', {
-                position: "top-center",
-                autoClose: 500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            showToast('success', 'Изменения сохранены', 1000)
         } catch (e: any) {
             console.log(e.response?.data?.message)
-            toast.warning(e.response?.data?.message, {
-                position: "top-center",
-                autoClose: 500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            showToast('warning', e.response?.data?.message, 1000)
         }
     }
 

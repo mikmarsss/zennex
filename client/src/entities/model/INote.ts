@@ -3,6 +3,8 @@ export interface INote {
     name: string;
     description: string;
     tags: Tag[];
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export type Tag = { name: string; number: number };
