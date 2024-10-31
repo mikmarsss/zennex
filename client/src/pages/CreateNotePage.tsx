@@ -9,6 +9,7 @@ import trash from '../assets/trash.svg'
 
 const StyledCreateNotePage = styled.div`
     width: 50%;
+    min-width: 500px;
     min-height: 600px;
     height: auto;
     background-color: white;

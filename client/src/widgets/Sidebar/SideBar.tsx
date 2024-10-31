@@ -16,6 +16,14 @@ const StyledSideBar = styled.div`
     align-items: center;
     padding-top: 100px;
 
+    @media (max-width: 1200px) {
+        min-width: 150px;
+        max-width: 200px;
+    }
+    
+    @media screen and (max-width: 668px) {
+        zoom: 0.6;
+    }
 `
 
 const SideBar: React.FC = () => {

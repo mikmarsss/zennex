@@ -28,6 +28,10 @@ padding-top: 100px;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+
+  @media screen and (max-width: 668px) {
+    zoom: 0.6;
+  }
 `
 
 function App() {

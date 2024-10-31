@@ -3,9 +3,3 @@
     padding: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
-@media screen and (max-width: 668px) {
-    body {
-        zoom: 0.6;
-    }
-}
