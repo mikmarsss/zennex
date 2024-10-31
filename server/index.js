@@ -15,9 +15,9 @@ const swaggerOptions = {
     swaggerDefinition: {
         openapi: '3.0.0',
         info: {
-            title: 'Your API Title',
+            title: 'Testovoe Zennex API`s',
             version: '1.0.0',
-            description: 'Description of your API',
+            description: 'None',
         },
         servers: [
             {
