@@ -6,6 +6,7 @@ import { Context } from "../main";
 import { useNavigate } from "react-router-dom";
 import { Tag } from "../entities/model/INote";
 import trash from '../assets/trash.svg'
+import { observer } from "mobx-react-lite";
 
 const StyledCreateNotePage = styled.div`
     width: 50%;
@@ -127,9 +128,12 @@ const CreateNotePage: React.FC = () => {
                 >
                 </textarea>
                 <p style={{ color: 'red', fontSize: '14px' }}>{descriptionError}</p>
-                <div style={{ display: 'flex', height: '50px' }}>
+                <div style={{ display: 'flex', height: '50px', gap: '20px' }}>
                     <Button background="#56C999" onClick={createNote} disabled={nameError === '' && descriptionError === '' && tagsError === '' ? false : true}>
                         Сохранить
+                    </Button>
+                    <Button background="#CC5C5C" onClick={() => navigate('/')}>
+                        Выйти
                     </Button>
                 </div>
             </StyledCreateNotePage>
@@ -137,4 +141,4 @@ const CreateNotePage: React.FC = () => {
     )
 }
 
-export default CreateNotePage
+export default observer(CreateNotePage)

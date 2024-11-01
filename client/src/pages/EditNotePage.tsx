@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { NoteService } from "../app/service/NoteService";
 import { Tag } from "../entities/model/INote";
 import trash from "../assets/trash.svg";
+import { observer } from "mobx-react-lite";
 
 const StyledEditNotePage = styled.div`
   width: 50%;
@@ -224,4 +225,4 @@ const EditNotePage: React.FC = () => {
     );
 };
 
-export default EditNotePage;
+export default observer(EditNotePage);
