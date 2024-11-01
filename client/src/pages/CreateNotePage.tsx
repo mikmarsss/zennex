@@ -34,6 +34,7 @@ const CreateNotePage: React.FC = () => {
     const [descriptionError, setDescriptionError] = useState('Обязательно поле')
 
     const [tags, setTags] = useState<Tag[]>([])
+    const [tagsError, setTagsError] = useState("");
 
     const nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
@@ -60,10 +61,22 @@ const CreateNotePage: React.FC = () => {
 
     const addTag = () => {
         setTags([...tags, { name: '', number: Date.now() }])
+        setTagsError("Все теги должны иметь непустое имя");
     }
 
     const changeInfo = (key: string, value: string, number: number) => {
-        setTags(tags.map(i => (i.number === number ? { ...i, [key]: value } : i)))
+        setTags((prevTags) => {
+            const newTags = prevTags.map((i) =>
+                i.number === number ? { ...i, [key]: value } : i
+            );
+            const hasEmptyTag = newTags.some((tag) => tag.name.trim() === "");
+            if (hasEmptyTag) {
+                setTagsError("Все теги должны иметь непустое имя");
+            } else {
+                setTagsError("");
+            }
+            return newTags;
+        });
     }
 
     const removeInfo = (number: number) => {
@@ -96,6 +109,9 @@ const CreateNotePage: React.FC = () => {
                         ))
                     }
                 </div>
+                {tags.length !== 0 && (
+                    <p style={{ color: "red", fontSize: "14px" }}>{tagsError}</p>
+                )}
                 <Input
                     type="text"
                     placeholder="Новая заметка"
@@ -112,7 +128,7 @@ const CreateNotePage: React.FC = () => {
                 </textarea>
                 <p style={{ color: 'red', fontSize: '14px' }}>{descriptionError}</p>
                 <div style={{ display: 'flex', height: '50px' }}>
-                    <Button background="#56C999" onClick={createNote} disabled={nameError === '' && descriptionError === '' ? false : true}>
+                    <Button background="#56C999" onClick={createNote} disabled={nameError === '' && descriptionError === '' && tagsError === '' ? false : true}>
                         Сохранить
                     </Button>
                 </div>

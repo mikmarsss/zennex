@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { CREATE_ROUTE, NOTE_ROUTE } from "../app/routes/utils";
 import Input from "../shared/ui/Input";
 import Button from "../shared/ui/Button";
+import { observer } from "mobx-react-lite";
 
 const NotesPage: React.FC = () => {
     const { userStore } = useContext(Context);
@@ -20,9 +21,11 @@ const NotesPage: React.FC = () => {
         fetchUserNotes();
     }, [sort]);
 
+    console.log(userNotes)
+
     useEffect(() => {
         fetchUserNotes();
-    }, []);
+    }, [userStore.user.id]);
 
     const fetchUserNotes = async () => {
         try {
@@ -113,4 +116,4 @@ const NotesPage: React.FC = () => {
     );
 };
 
-export default NotesPage;
+export default observer(NotesPage);
