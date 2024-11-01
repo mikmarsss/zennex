@@ -2,6 +2,7 @@ const NoteController = require('../controller/NoteController');
 const authMiddleware = require('../middlewares/auth-middleware')
 const Router = require('express').Router;
 const router = new Router()
+const { body } = require('express-validator')
 
 /**
  * @swagger
@@ -79,7 +80,11 @@ const router = new Router()
  *       401:
  *         description: Unauthorized
  */
-router.use('/create', authMiddleware, NoteController.createNote)
+router.use('/create',
+    body('name').notEmpty(),
+    body('description').notEmpty(),
+    body('user_id').notEmpty(),
+    authMiddleware, NoteController.createNote)
 /**
  * @swagger
  * /note/delete:
@@ -136,7 +141,10 @@ router.use('/create', authMiddleware, NoteController.createNote)
  *       401:
  *         description: Unauthorized
  */
-router.use('/delete', authMiddleware, NoteController.deleteNote)
+router.use('/delete',
+    body('note_id').notEmpty(),
+    body('user_id').notEmpty(),
+    authMiddleware, NoteController.deleteNote)
 /**
  * @swagger
  * /note/edit:
@@ -217,7 +225,12 @@ router.use('/delete', authMiddleware, NoteController.deleteNote)
  *       401:
  *         description: Unauthorized
  */
-router.use('/edit', authMiddleware, NoteController.editNote)
+router.use('/edit',
+    body('name').notEmpty(),
+    body('description').notEmpty(),
+    body('user_id').notEmpty(),
+    body('note_id').notEmpty(),
+    authMiddleware, NoteController.editNote)
 /**
  * @swagger
  * /note/all:
@@ -276,7 +289,10 @@ router.use('/edit', authMiddleware, NoteController.editNote)
  *       401:
  *         description: Unauthorized
  */
-router.use('/all', authMiddleware, NoteController.fetchUserNotes)
+router.use('/all',
+    body('user_id').notEmpty(),
+    body('sort').notEmpty(),
+    authMiddleware, NoteController.fetchUserNotes)
 /**
  * @swagger
  * /note/one:
@@ -333,6 +349,9 @@ router.use('/all', authMiddleware, NoteController.fetchUserNotes)
  *       401:
  *         description: Unauthorized
  */
-router.use('/one', authMiddleware, NoteController.fetchUserNote)
+router.use('/one',
+    body('user_id').notEmpty(),
+    body('note_id').notEmpty(),
+    authMiddleware, NoteController.fetchUserNote)
 
 module.exports = router

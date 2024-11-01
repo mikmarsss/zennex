@@ -1,4 +1,5 @@
 const UserController = require('../controller/UserController');
+const { body } = require('express-validator')
 
 const Router = require('express').Router;
 const router = new Router()
@@ -61,7 +62,11 @@ const router = new Router()
  *       409:
  *         description: User already exists
  */
-router.use('/registration', UserController.registration)
+router.use('/registration',
+    body('email').isEmail(),
+    body('password').isLength({ min: 6, max: 32 }),
+    body('username').notEmpty(),
+    UserController.registration)
 /**
  * @swagger
  * /user/login:
@@ -111,7 +116,10 @@ router.use('/registration', UserController.registration)
  *       401:
  *         description: Unauthorized
  */
-router.use('/login', UserController.login)
+router.use('/login',
+    body('email').isEmail(),
+    body('password').isLength({ min: 6, max: 32 }),
+    UserController.login)
 /**
  * @swagger
  * /user/logout:

@@ -17,7 +17,7 @@ const swaggerOptions = {
         info: {
             title: 'Testovoe Zennex API`s',
             version: '1.0.0',
-            description: 'None',
+            description: 'Description of your API',
         },
         servers: [
             {
